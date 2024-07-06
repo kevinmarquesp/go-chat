@@ -1,0 +1,25 @@
+{{ range $data := . }}
+	{{ if $data.IsOwner }}
+
+		<div>
+			<p class="bg-blue-700 px-4 py-3 rounded-s-2xl rounded-tr-2xl max-w-sm ms-auto">
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+			</p>
+			<span class="text-sm text-blue-400 block w-full mt-1 text-end">
+				Fulano de Tal
+			</span>
+		</div>
+
+	{{ else }}
+
+		<div>
+			<p class="bg-zinc-800 px-4 py-3 rounded-e-2xl rounded-tl-2xl max-w-sm">
+				{{ $data.Message }}
+			</p>
+			<span class="text-sm text-zinc-400 block w-full mt-1">
+				{{ $data.Username }}
+			</span>
+		</div>
+
+	{{ end }}
+{{ end }}
