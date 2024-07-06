@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>
+			Stupid Chat
+		</title>
+	</head>
+	<body class="bg-zinc-950 text-zinc-50 h-screen">
+		<div class="max-w-2xl mx-auto p-12 space-y-6 mb-[6rem]">
+
+			<!-- Other messages. -->
+
+			<!-- <div> -->
+			<!-- 	<p class="bg-zinc-800 px-4 py-3 rounded-e-2xl rounded-tl-2xl max-w-sm"> -->
+			<!-- 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. -->
+			<!-- 	</p> -->
+			<!-- 	<span class="text-sm text-zinc-400 block w-full mt-1"> -->
+			<!-- 		Fulano de Tal -->
+			<!-- 	</span> -->
+			<!-- </div> -->
+
+			<!-- Owner messages. -->
+
+			<!-- <div> -->
+			<!-- 	<p class="bg-blue-700 px-4 py-3 rounded-s-2xl rounded-tr-2xl max-w-sm ms-auto"> -->
+			<!-- 		Lorem ipsum, dolor sit amet consectetur adipisicing elit. -->
+			<!-- 	</p> -->
+			<!-- 	<span class="text-sm text-blue-400 block w-full mt-1 text-end"> -->
+			<!-- 		Fulano de Tal -->
+			<!-- 	</span> -->
+			<!-- </div> -->
+
+		</div>
+
+		<form class="flex gap-3 p-4 bg-zinc-950 fixed bottom-0 w-[min(42rem,100vw)] border-t border-zinc-500/50 start-1/2 -translate-x-1/2">
+			<input type="text" id="message" placeholder="{{ .Username }}" class="w-full bg-zinc-900 border border-zinc-600/50 rounded-lg focus:outline-none px-3 py-2">
+			<button id="send" class="bg-blue-600 px-3 py-2 rounded-lg border border-blue-300/50 hover:bg-blue-500">
+				Send
+			</button>
+		</form>
+	</body>
+</html>
