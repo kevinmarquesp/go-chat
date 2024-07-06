@@ -86,6 +86,22 @@ func main() {
 		ctx.HTML(http.StatusOK, "messages.html", messages)
 	})
 
+	router.POST("/send/:name", func(ctx *gin.Context) {
+		message := ctx.PostForm("message")
+
+		log.Println(message)
+
+		if message == "" {
+			return
+		}
+
+		if _, err := Conn.Query("INSERT INTO messages (username, message) VALUES ($1, $2)",
+			ctx.Param("name"), message); err != nil {
+			log.Println(err)
+			return
+		}
+	})
+
 	router.Run()
 }
 

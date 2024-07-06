@@ -3,8 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
+
 		<title>
 			Stupid Chat
 		</title>
@@ -16,11 +18,34 @@
 			class="max-w-2xl mx-auto p-12 space-y-6 mb-[6rem]"
 		></div>
 
-		<form action="" class="flex gap-3 p-4 bg-zinc-950 fixed bottom-0 w-[min(42rem,100vw)] border-t border-zinc-500/50 start-1/2 -translate-x-1/2">
-			<input type="text" id="message" placeholder="Type something..." class="w-full bg-zinc-900 border border-zinc-600/50 rounded-lg focus:outline-none px-3 py-2">
-			<button id="send" class="bg-blue-600 px-3 py-2 rounded-lg border border-blue-300/50 hover:bg-blue-500">
+		<form id="form" class="flex gap-3 p-4 bg-zinc-950 fixed bottom-0 w-[min(42rem,100vw)] border-t border-zinc-500/50 start-1/2 -translate-x-1/2">
+			<input type="text" id="message" placeholder="Type something..." name="message" class="w-full bg-zinc-900 border border-zinc-600/50 rounded-lg focus:outline-none px-3 py-2">
+			<button id="send" class="bg-blue-600 px-3 py-2 rounded-lg border border-blue-300/50 hover:bg-blue-500" type="submit">
 				Send
 			</button>
 		</form>
+
+		<script>
+			const $input = document.querySelector("#message");
+
+			document.querySelector("#form").onsubmit = (event) => {
+				event.preventDefault();
+
+				htmx.ajax("POST", "/send/{{ .Username }}", {
+					target: "#hidden",
+					values: {
+						message: $input.value,
+					},
+				}).then(() => {
+						setTimeout(() =>
+							window.scrollTo(0, document.body.scrollHeight), 75);
+
+						$input.value = "";
+				});
+			};
+		</script>
+
+		<!-- Work around to hide the HTMX submit response... -->
+		<div id="hidden" class="hidden"></div>
 	</body>
 </html>
