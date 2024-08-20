@@ -1,1 +1,3 @@
-# go-chat
+# Go Chat
+
+![demo](demo.png)
